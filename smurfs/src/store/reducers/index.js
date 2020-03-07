@@ -1,4 +1,4 @@
-import { FETCHING_START, FETCHING_SUCCESS, FETCHING_FAILURE } from '../actions';
+import { FETCHING_START, FETCHING_SUCCESS, FETCHING_FAILURE, ADD_SUCESS, ADD_FAILURE, EDIT_FAILURE, EDIT_SUCESS } from '../actions';
 
 const initialState = {
     smurfs: [],
@@ -25,6 +25,28 @@ export const reducer = ( state = initialState, action) => {
             return {
                 ...state,
                 fetching: false,
+                error: action.payload
+            };
+        case ADD_SUCESS:
+            return {
+                ...state,
+                smurfs: action.payload,
+                error: ""
+            };
+        case ADD_FAILURE:
+            return {
+                ...state,
+                error: action.payload
+            };
+        case EDIT_SUCESS:
+            return {
+                ...state,
+                smurfs: action.payload,
+                error: ""
+            };
+         case EDIT_FAILURE:
+            return {
+                 ...state,
                 error: action.payload
             };
         default:

@@ -5,13 +5,15 @@ import SmurfCard from './SmurfCard';
 
 const SmurfList = (props) => {
     return(
-        <div>
-            <button onClick={() => props.getSmurfs()} >Smurfs</button>
-            {props.error !== "" ? `Error: ${props.error}`:
-            props.smurfs.map(x => (
-                <SmurfCard key={x.id} data={x} />
-            ))
-            }
+        <div >
+            <button onClick={() => props.getSmurfs()} >Get a list of Smurfs</button>
+            <div className="flexDisplay">
+                {props.error !== "" ? `Error: ${props.error}`:
+                    props.smurfs.map(x => (
+                        <SmurfCard key={x.id} data={x} />
+                ))}
+            </div>
+            
         </div>
     );
 };
