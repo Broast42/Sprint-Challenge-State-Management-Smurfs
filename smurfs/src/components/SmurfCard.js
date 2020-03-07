@@ -1,5 +1,7 @@
 import React, { useState }from 'react';
 import EditForm from './EditForm';
+import { connect } from 'react-redux';
+import { deleteSmurf } from '../store/actions';
 
 const SmurfCard = (props) => {
     
@@ -14,8 +16,15 @@ const SmurfCard = (props) => {
             <h3>Height: {props.data.height}</h3>
             <button onClick={()=> toggleForm()}>Edit</button>
             {showForm === true ? <EditForm data={props.data}/> : ""}
+            <button onClick={()=> deleteSmurf(props.data.id)}>Delete Smurf</button>
         </div>
     );
 };
 
-export default SmurfCard;
+const mapStateToProps = state => {
+    return {
+        smurfs: state.smurfs
+    }
+}
+
+export default connect(mapStateToProps, {deleteSmurf})(SmurfCard);

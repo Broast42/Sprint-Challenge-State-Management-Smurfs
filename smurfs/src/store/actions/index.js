@@ -10,6 +10,9 @@ export const ADD_FAILURE = 'ADD_FAILURE';
 export const EDIT_SUCESS = 'EDIT_SUCESS';
 export const EDIT_FAILURE = 'EDIT_FAILURE';
 
+export const DELETE_SUCESS = 'DELETE_SUCESS';
+export const DELETE_FAILURE = 'DELETE_FAILURE';
+
 export const getSmurfs = () => dispatch => {
     dispatch ({type: FETCHING_START});
 
@@ -54,5 +57,18 @@ export const editSmurf = (id, name, age, height) => dispatch => {
         .catch(err =>{
             console.log('edit error', err);
             dispatch({type: EDIT_FAILURE, payload: err})
+        });
+};
+
+export const deleteSmurf = (id) => dispatch => {
+    axios
+        .delete(`http://localhost:3333/smurfs/${id}`)
+        .then(res =>{
+            console.log('edit smurf', res.data);
+            dispatch({type: DELETE_SUCESS, payload: res.data})
+        })
+        .catch(err =>{
+            console.log('edit error', err);
+            dispatch({type: DELETE_FAILURE, payload: err})
         });
 };

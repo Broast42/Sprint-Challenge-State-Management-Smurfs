@@ -1,4 +1,4 @@
-import { FETCHING_START, FETCHING_SUCCESS, FETCHING_FAILURE, ADD_SUCESS, ADD_FAILURE, EDIT_FAILURE, EDIT_SUCESS } from '../actions';
+import { FETCHING_START, FETCHING_SUCCESS, FETCHING_FAILURE, ADD_SUCESS, ADD_FAILURE, EDIT_FAILURE, EDIT_SUCESS, DELETE_FAILURE, DELETE_SUCESS } from '../actions';
 
 const initialState = {
     smurfs: [],
@@ -47,6 +47,17 @@ export const reducer = ( state = initialState, action) => {
          case EDIT_FAILURE:
             return {
                  ...state,
+                error: action.payload
+            };
+        case DELETE_SUCESS:
+            return {
+                 ...state,
+                smurfs: action.payload,
+                error: ""
+            };
+        case DELETE_FAILURE:
+            return {
+                ...state,
                 error: action.payload
             };
         default:
